@@ -86,6 +86,7 @@ def add_task():
     print("Task added successfully.")
 
 def view_all_tasks(tasks):
+    tasks = read_tasks()
     for task in tasks:
         print(f"Username: {task['username']}")
         print(f"Title: {task['title']}")
@@ -96,6 +97,7 @@ def view_all_tasks(tasks):
         print("-" * 40)
 
 def view_my_tasks(tasks, username):
+    tasks = read_tasks()
     for task in tasks:
         if task['username'] == username:
             print(f"Title: {task['title']}")
