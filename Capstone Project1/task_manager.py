@@ -6,6 +6,10 @@ print("Current Working Directory:", os.getcwd())
 import datetime
 
 def read_users():
+    """
+    Reads and loads users from user.txt into a dictionary.
+    Returns a dictionary whwre keys are usernames and values are passwords.
+    """
     users = {}
     if os.path.exists("user.txt"):
         with open("user.txt", "r") as file:
@@ -19,6 +23,10 @@ def read_users():
     return users
 
 def read_tasks():
+    """
+    Reads and loads tasks from tasks.txt into a list od dictionaries.
+    Each task is stored as a dictionary.
+    """
     tasks = []
     if os.path.exists("tasks.txt"):
         with open("tasks.txt", "r") as file:
@@ -36,14 +44,23 @@ def read_tasks():
     return tasks
 
 def append_user(username, password):
+    """
+    Appends a nw user (username and password) to user.txt file
+    """
     with open("user.txt", "a") as file:
         file.write(f"\n {username}, {password}\n")
 
 def append_task(task):
+    """
+    Appends a new task (stored as a dictionary) to tasks.txt file
+    """
     with open("tasks.txt", "a") as file:
         file.write(f"{task['username']}, {task['title']}, {task['description']}, {task['assigned_date']}, {task['due_date']}, {task['completed']}\n")
 
 def display_menu(is_admin):
+    """
+    Displays the menu options based on the user's role.
+    """
     print("Please select one of the following options:")
     if is_admin:
         print("r - Register a user")
@@ -69,6 +86,10 @@ def register_user(users):
         print("Passwords do not match. Please try again.")
 
 def add_task():
+    """
+    Manages user registration.
+    Prompts for a new username, checks for uniqueness, and adds user.
+    """
     username = input("Enter the username of the person the task is assigned to: ")
     title = input("Enter the title of the task: ")
     description = input("Enter the description of the task: ")
@@ -86,6 +107,9 @@ def add_task():
     print("Task added successfully.")
 
 def view_all_tasks(tasks):
+    """
+    Displays all tasks in the tasks.txt file
+    """
     for task in tasks:
         print(f"Username: {task['username']}")
         print(f"Title: {task['title']}")
@@ -96,6 +120,9 @@ def view_all_tasks(tasks):
         print("-" * 40)
 
 def view_my_tasks(tasks, username):
+    """
+    Displays only the tasks of the logged in user
+    """
     for task in tasks:
         if task['username'] == username:
             print(f"Title: {task['title']}")
@@ -106,10 +133,17 @@ def view_my_tasks(tasks, username):
             print("-" * 40)
 
 def display_statistics(users, tasks):
+    """
+    Displays the total number of users and tasks.
+    """
     print(f"Total number of users: {len(users)}")
     print(f"Total number of tasks: {len(tasks)}")
 
 def main():
+    """
+    The main function that handles user login and menu interactions.
+    """
+    
     users = read_users()
     tasks = read_tasks()
                
