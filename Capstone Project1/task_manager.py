@@ -107,9 +107,12 @@ def add_task():
     print("Task added successfully.")
 
 def view_all_tasks(tasks):
+
     """
     Displays all tasks in the tasks.txt file
     """
+    task = read_tasks()
+
     for task in tasks:
         print(f"Username: {task['username']}")
         print(f"Title: {task['title']}")
@@ -123,6 +126,7 @@ def view_my_tasks(tasks, username):
     """
     Displays only the tasks of the logged in user
     """
+    tasks = read_tasks()
     for task in tasks:
         if task['username'] == username:
             print(f"Title: {task['title']}")
